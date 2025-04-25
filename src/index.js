@@ -13,8 +13,28 @@
 
 import 'dotenv/config';
 import connectDB from './db/dbConnntion.js';
+import express from 'express';
 
+const app = express();
+
+// connectDB is a function that connects to the MongoDB database using Mongoose
+// it is imported from the dbConnntion.js file and is called here to establish the connection
+// because index file loads first so we have to call it here
+// it will return a promise because we use async await
 connectDB()
+    .then(
+        app.listen(process.env.PORT || 8000, () => {
+            console.log(`Server is running on port ${process.env.PORT || 8000}`)
+        }),
+        // this will tell if connection is correct but your express is not working then it will give error it is express part
+        app.on("error", (error) => {
+            console.error("Error connecting Express", error)
+            throw err
+        })
+    )
+    .catch((error) => {
+        console.log("Error connecting mongoDB", error)
+    })
 
 
 
