@@ -1,5 +1,6 @@
 // this is a wrapper function for async functions to handle errors in express.js
 // it takes a function as an argument and returns a new function that handles errors
+
 // it is used to avoid try-catch blocks or promisis in every route handler
 
 
