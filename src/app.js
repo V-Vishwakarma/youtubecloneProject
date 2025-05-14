@@ -25,7 +25,17 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }))
 app.use(express.static('public'))
 
 // for parsing cookies means if you are using cookies in your application then you have to use this middleware
-app.use(cookieParser()) 
+app.use(cookieParser())
+
+
+// routes import
+import userRouter from './routes/user.routes.js'
+// routes for the user
+app.use('/api/v1/users', userRouter)
+// the route is http://localhost:8000/api/v1/users then it move to the userRouter then acccordingly
+// api/v1/user/ is a statard practice to use versioning in the api
+
+
 
 
 export { app }
